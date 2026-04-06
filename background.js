@@ -1,9 +1,8 @@
-// background.js — fetches & caches exchange rates
-// Cache duration: 1 hour (3600000ms)
+// background.js — fetches & caches exchange rates + handles toolbar click
 const CACHE_DURATION = 60 * 60 * 1000;
 
 // NOTE: Replace with your free key from https://www.exchangerate-api.com/
-const API_KEY = "YOUR_API_KEY_HERE";
+const API_KEY = "58f6d55d845c1eb589f8b3ad";
 const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/CNY`;
 
 async function fetchRates() {
@@ -30,15 +29,10 @@ async function fetchRates() {
       SGD: data.conversion_rates.SGD,
     };
 
-    await browser.storage.local.set({
-      rates,
-      ratesTimestamp: now,
-    });
-
+    await browser.storage.local.set({ rates, ratesTimestamp: now });
     return rates;
   } catch (err) {
     console.error("[Taobao Helper] Rate fetch failed:", err);
-    // Fall back to stored rates even if stale
     return stored.rates || null;
   }
 }
@@ -47,6 +41,11 @@ async function fetchRates() {
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "GET_RATES") {
     fetchRates().then((rates) => sendResponse({ rates }));
-    return true; // Keep channel open for async response
+    return true;
   }
+});
+
+// Toolbar icon click → toggle sidebar on active tab
+browser.browserAction.onClicked.addListener((tab) => {
+  browser.tabs.sendMessage(tab.id, { type: "TOGGLE_SIDEBAR" });
 });

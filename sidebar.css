@@ -1,0 +1,198 @@
+/* sidebar.css — Taobao Helper sliding sidebar */
+
+#tbh-sidebar {
+  position: fixed;
+  top: 0;
+  right: -360px;
+  width: 340px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -4px 0 24px rgba(0,0,0,0.18);
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: #1a1a2e;
+  transition: right 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#tbh-sidebar.tbh-open {
+  right: 0;
+}
+
+/* Header */
+.tbh-sb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #e8490f;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.tbh-sb-logo {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.tbh-sb-close {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: #fff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.tbh-sb-close:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+/* Body */
+.tbh-sb-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Sections */
+.tbh-sb-section {
+  background: #f7f8fa;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.tbh-sb-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+/* Keyword rows */
+.tbh-keyword-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.tbh-dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 3px;
+}
+
+.tbh-dot-green  { background: #4caf50; }
+.tbh-dot-yellow { background: #ffc107; }
+.tbh-dot-red    { background: #f44336; }
+
+.tbh-keyword-list {
+  color: #333;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tbh-empty {
+  color: #bbb;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Price rows */
+.tbh-price-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 12px;
+}
+
+.tbh-price-row:last-child { border-bottom: none; }
+
+.tbh-price-cny { color: #555; font-weight: 600; }
+.tbh-price-usd { color: #1a56db; font-weight: 600; text-align: center; }
+.tbh-price-sgd { color: #c0392b; font-weight: 600; text-align: right; }
+
+/* Quick converter */
+.tbh-converter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tbh-input-row {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+
+.tbh-input-row:focus-within {
+  border-color: #e8490f;
+}
+
+.tbh-cny-symbol {
+  padding: 0 10px;
+  font-size: 16px;
+  color: #e8490f;
+  font-weight: 700;
+}
+
+#tbh-cny-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 8px 8px 8px 0;
+  font-size: 14px;
+  background: transparent;
+  color: #1a1a2e;
+}
+
+.tbh-conv-results {
+  display: flex;
+  gap: 8px;
+}
+
+.tbh-conv-row {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tbh-conv-usd { background: #e8f0fe; color: #1a56db; }
+.tbh-conv-sgd { background: #fde8e8; color: #c0392b; }
+
+/* Footer */
+.tbh-sb-footer {
+  font-size: 10px;
+  color: #aaa;
+  text-align: center;
+  padding: 4px 0 2px;
+}
