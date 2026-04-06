@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taobao Helper</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🛒 Taobao Helper</h1>
+      <p class="subtitle">Your Taobao shopping assistant</p>
+    </header>
+
+    <!-- Rate status -->
+    <section class="card" id="rate-card">
+      <div class="card-label">💱 Exchange Rates (CNY)</div>
+      <div class="rates-row">
+        <div class="rate-item">
+          <span class="rate-flag">🇺🇸</span>
+          <span class="rate-label">USD</span>
+          <span class="rate-value" id="usd-rate">—</span>
+        </div>
+        <div class="rate-item">
+          <span class="rate-flag">🇸🇬</span>
+          <span class="rate-label">SGD</span>
+          <span class="rate-value" id="sgd-rate">—</span>
+        </div>
+      </div>
+      <div class="rate-meta" id="rate-meta">Loading…</div>
+    </section>
+
+    <!-- Legend: Materials -->
+    <section class="card">
+      <div class="card-label">🧵 Material Keywords</div>
+      <div class="legend-row">
+        <span class="dot green"></span>
+        <span class="legend-terms">亚麻 · 真皮 · 头层牛皮 · 纯亚麻 · 棉麻</span>
+      </div>
+      <div class="legend-row">
+        <span class="dot yellow"></span>
+        <span class="legend-terms">牛剖层革 · 二层皮 · 棉麻混纺</span>
+      </div>
+      <div class="legend-row">
+        <span class="dot red"></span>
+        <span class="legend-terms">PU · 仿皮 · 人造 · 其他材质</span>
+      </div>
+    </section>
+
+    <!-- Legend: Shipping -->
+    <section class="card">
+      <div class="card-label">📦 Shipping Keywords</div>
+      <div class="legend-row">
+        <span class="dot green"></span>
+        <span class="legend-terms">空运 · 今日发货 · 直邮空运</span>
+      </div>
+      <div class="legend-row">
+        <span class="dot yellow"></span>
+        <span class="legend-terms">陆运 · 48小时发货</span>
+      </div>
+      <div class="legend-row">
+        <span class="dot red"></span>
+        <span class="legend-terms">预售 · 海运 · 7天内发货</span>
+      </div>
+    </section>
+
+    <footer>v1.0.0 · <a href="https://github.com/dskdst-ux/taobao-helper" target="_blank">GitHub</a></footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

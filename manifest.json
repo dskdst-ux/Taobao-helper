@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+  "name": "Taobao Helper",
+  "version": "1.0.0",
+  "description": "Material & shipping highlighter + CNY price converter for Taobao international shoppers",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "https://v6.exchangerate-api.com/*"
+  ],
+  "icons": {
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "48": "icons/icon48.png"
+    },
+    "default_popup": "popup/popup.html",
+    "default_title": "Taobao Helper"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.taobao.com/*", "*://*.tmall.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
+}

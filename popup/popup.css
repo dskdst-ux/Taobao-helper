@@ -1,0 +1,123 @@
+/* popup.css */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  background: #f7f8fa;
+  color: #1a1a2e;
+  width: 300px;
+}
+
+.container {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding-bottom: 4px;
+}
+
+header h1 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #e8490f; /* Taobao orange */
+  letter-spacing: -0.3px;
+}
+
+.subtitle {
+  font-size: 11px;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.card-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #888;
+  margin-bottom: 1px;
+}
+
+/* Rates */
+.rates-row {
+  display: flex;
+  gap: 8px;
+}
+
+.rate-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #f4f6fb;
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+.rate-flag { font-size: 16px; }
+.rate-label { font-weight: 600; color: #555; }
+.rate-value { margin-left: auto; font-weight: 700; color: #1a1a2e; font-size: 13px; }
+
+.rate-meta {
+  font-size: 10px;
+  color: #aaa;
+  text-align: right;
+}
+
+/* Legend rows */
+.legend-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 3px;
+}
+
+.dot.green  { background: #4caf50; }
+.dot.yellow { background: #ffc107; }
+.dot.red    { background: #f44336; }
+
+.legend-terms {
+  color: #444;
+  font-size: 12px;
+  word-break: break-all;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  font-size: 10px;
+  color: #bbb;
+  padding-top: 2px;
+}
+
+footer a {
+  color: #1a56db;
+  text-decoration: none;
+}
+
+footer a:hover { text-decoration: underline; }
