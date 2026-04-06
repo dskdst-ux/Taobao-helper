@@ -15,6 +15,31 @@ const SHIPPING = {
   red:    ["预售", "海运", "7天内发货"],
 };
 
+const TRANSLATIONS = {
+  // Materials
+  "亚麻":     "Linen",
+  "真皮":     "Genuine Leather",
+  "头层牛皮": "Top-grain Cowhide",
+  "纯亚麻":   "Pure Linen",
+  "棉麻":     "Cotton-Linen",
+  "牛剖层革": "Split Leather",
+  "二层皮":   "Split-hide Leather",
+  "棉麻混纺": "Cotton-Linen Blend",
+  "其他材质": "Other Material",
+  "PU":       "PU (Faux Leather)",
+  "仿皮":     "Imitation Leather",
+  "人造":     "Synthetic",
+  // Shipping
+  "空运":       "Air Freight",
+  "今日发货":   "Ships Today",
+  "直邮空运":   "Direct Air Mail",
+  "陆运":       "Land Freight",
+  "48小时发货": "Ships in 48hrs",
+  "预售":       "Pre-order",
+  "海运":       "Sea Freight",
+  "7天内发货":  "Ships in 7 days",
+};
+
 for (const tier of Object.values(MATERIALS)) tier.sort((a, b) => b.length - a.length);
 for (const tier of Object.values(SHIPPING))  tier.sort((a, b) => b.length - a.length);
 
@@ -141,6 +166,7 @@ function highlightInTextNode(textNode, lookup, cssPrefix, foundBucket) {
     const span = document.createElement("mark");
     span.className = `tbh-${cssPrefix}-${earliest.tier}`;
     span.textContent = earliest.term;
+    if (TRANSLATIONS[earliest.term]) span.title = TRANSLATIONS[earliest.term];
     frag.appendChild(span);
 
     // Track for sidebar
@@ -275,11 +301,17 @@ function renderSidebarContent() {
   for (const tier of ["green", "yellow", "red"]) {
     if (found.materials[tier].size === 0) continue;
     matAny = true;
-    const row = document.createElement("div");
-    row.className = "tbh-keyword-row";
-    row.innerHTML = `<span class="tbh-dot tbh-dot-${tier}"></span>
-      <span class="tbh-keyword-list">${[...found.materials[tier]].join(" · ")}</span>`;
-    matEl.appendChild(row);
+    for (const term of found.materials[tier]) {
+      const row = document.createElement("div");
+      row.className = "tbh-keyword-row";
+      const en = TRANSLATIONS[term] || term;
+      row.innerHTML = `<span class="tbh-dot tbh-dot-${tier}"></span>
+        <span class="tbh-keyword-list">
+          <span class="tbh-en">${en}</span>
+          <span class="tbh-zh">${term}</span>
+        </span>`;
+      matEl.appendChild(row);
+    }
   }
   if (!matAny) matEl.innerHTML = `<div class="tbh-empty">No material keywords detected</div>`;
 
@@ -290,11 +322,17 @@ function renderSidebarContent() {
   for (const tier of ["green", "yellow", "red"]) {
     if (found.shipping[tier].size === 0) continue;
     shipAny = true;
-    const row = document.createElement("div");
-    row.className = "tbh-keyword-row";
-    row.innerHTML = `<span class="tbh-dot tbh-dot-${tier}"></span>
-      <span class="tbh-keyword-list">${[...found.shipping[tier]].join(" · ")}</span>`;
-    shipEl.appendChild(row);
+    for (const term of found.shipping[tier]) {
+      const row = document.createElement("div");
+      row.className = "tbh-keyword-row";
+      const en = TRANSLATIONS[term] || term;
+      row.innerHTML = `<span class="tbh-dot tbh-dot-${tier}"></span>
+        <span class="tbh-keyword-list">
+          <span class="tbh-en">${en}</span>
+          <span class="tbh-zh">${term}</span>
+        </span>`;
+      shipEl.appendChild(row);
+    }
   }
   if (!shipAny) shipEl.innerHTML = `<div class="tbh-empty">No shipping keywords detected</div>`;
 
@@ -377,4 +415,5 @@ browser.runtime.onMessage.addListener((message) => {
   await loadRates();
   walkAndProcess(document.body);
   observer.observe(document.body, { childList: true, subtree: true });
+  openSidebar(); // always show sidebar on page load
 })();

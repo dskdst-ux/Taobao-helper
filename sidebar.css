@@ -108,6 +108,20 @@
   color: #333;
   font-size: 13px;
   line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.tbh-en {
+  font-weight: 600;
+  color: #1a1a2e;
+  font-size: 13px;
+}
+
+.tbh-zh {
+  font-size: 11px;
+  color: #888;
 }
 
 .tbh-empty {
